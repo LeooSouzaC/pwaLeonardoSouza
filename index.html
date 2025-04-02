@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PWA Notas</title>
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <link rel="manifest" href="manifest.json" />
+    <script src="./app.js" defer></script>
+    <script src="./components/note-card.js" defer></script>
+  </head>
+  <body>
+    <section id="main-section">
+      <h1>PWA de Anotações</h1>
+      <div id="buttons">
+        <button id="auth-btn">Autenticar</button>
+        <div>
+          <button id="save-btn">Salvar Nota</button>
+          <button id="voice-btn">🎤 Falar</button>
+        </div>
+      </div>
+      <textarea
+        id="note-input"
+        placeholder="Digite ou fale sua anotação..."
+      ></textarea>
+    </section>
+    <div id="notes-container"></div>
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("/service-worker.js")
+          .then(() => console.log("Service Worker registrado!"))
+          .catch((err) => console.error("Erro no Service Worker", err));
+      }
+    </script>
+  </body>
+</html>
